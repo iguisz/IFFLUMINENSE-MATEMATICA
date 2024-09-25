@@ -14,7 +14,7 @@ with st.sidebar:
     st.markdown(
         """Trabalho apresentado ao Curso Integrado de Eletrônica do IFFLUMINENSE – Instituto Federal de Educação, Ciência e Tecnologia Fluminense – Campus MACAÉ  
     para as disciplinas de: Matemática  
-    Professora: Izabel"""
+    Professora: Izabela"""
     )
     st.success("Seminário arregado com sucesso!")
 
@@ -25,14 +25,13 @@ tab1, tab3, tab4 = st.tabs(["📝 Teoria", "⚡ Eletrônica", "📟 Osciloscópi
 with tab1:
     st.title("Função Afim")
 
-    # Texto explicativo sobre função afim
+   
     st.write("""A **função afim** é uma função matemática da forma: f(x) = ax + b, onde: (a) é o coeficiente angular, que determina a inclinação da reta; (b) é o coeficiente linear, que representa o valor de f(x) quando x = 0. A função afim é uma função linear, sendo sua representação gráfica uma reta. O coeficiente angular (a) pode ser positivo, negativo ou igual a zero, o que altera a direção e a inclinação da reta: Se (a > 0), a reta é crescente. Se (a < 0), a reta é decrescente. Se (a = 0), a reta é horizontal. Gráfico da Função Afim Para visualizar a função afim, você pode ajustar os coeficientes (a) e (b):""")
 
-    # Sliders para ajustar a e b
+    
     a = st.slider("Coeficiente Angular (a)", -5, 5, 1, step=1)
     b = st.slider("Coeficiente Linear (b)", -10, 10, 0, step=1)
 
-    # Criar vetor de x com números inteiros
     x = np.arange(-10, 11, 1)  # Apenas inteiros de -10 a 10
     # Calcular os valores de y usando a função afim
     y = a * x + b
@@ -41,7 +40,7 @@ with tab1:
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=x, y=y, mode='markers+lines', name='f(x) = {}x + {}'.format(a, b)))
 
-    # Personalizar o layout do gráfico
+    
     fig.update_layout(
         title="Gráfico da Função Afim",
         xaxis_title="x",
@@ -65,12 +64,12 @@ with tab3:
         st.header("Introdução à Eletrônica Analógica")
         st.write("""A eletrônica analógica é um ramo da eletrônica que lida com sinais contínuos e a manipulação desses sinais em circuitos que operam em níveis de tensão e corrente variáveis. Ao contrário da eletrônica digital, que se baseia em sinais discretos e lógicos, a eletrônica analógica é fundamental para o tratamento de informações que podem assumir um número infinito de valores. Esse tipo de eletrônica é amplamente utilizado em amplificadores, filtros, osciladores e circuitos de modulação, sendo essencial em diversas aplicações, como áudio, telecomunicações e instrumentação.""")
 
-    # Seção sobre amplificadores lineares
+    #amplificadores lineares
     if "Amplificadores Lineares" in selecao:
         st.header("Amplificadores Lineares")
         st.write("""Os amplificadores lineares, dispositivos centrais da eletrônica analógica, são projetados para aumentar o sinal de entrada sem distorcer suas características fundamentais. Eles seguem o princípio da função afim \( y = ax + b \), onde \( x \) representa o sinal de entrada, \( a \) o ganho (que determina o quanto o sinal será amplificado) e \( b \) uma constante que pode representar um ajuste de offset no circuito. A linearidade desses amplificadores é crucial para garantir que o sinal de saída mantenha uma relação proporcional com o sinal de entrada, evitando distorções.""")
 
-    # Seção sobre osciloscópios
+    #osciloscópios
     if "Osciloscópios" in selecao:
         st.header("Osciloscópios")
         st.write("""O osciloscópio é um instrumento fundamental na eletrônica analógica, permitindo a visualização e medição de sinais elétricos variáveis ao longo do tempo. Ele possibilita a observação da forma de onda de um sinal, sua amplitude, frequência e qualquer distorção presente. Quando conectado a um amplificador linear, o osciloscópio pode verificar a fidelidade da amplificação, evidenciando se a saída segue a mesma forma que a entrada e, portanto, se a relação entre ambos é linear, conforme a função afim \( y = ax + b \).""")
@@ -87,20 +86,20 @@ with tab4:
     amplitude = st.slider("Amplitude", 1, 5, 1, step=1)
     gain = st.slider("Ganho", 1, 10, 2, step=1)
 
-    # Cálculo da onda senoidal
+    # Cálculo da onda
     wave = amplitude * np.sin(2 * np.pi * freq * t)
     amplified_wave = gain * wave  # Onda amplificada
 
-    # Criar o gráfico com Plotly
+    # Criar o gráfico
     fig = go.Figure()
 
-    # Adicionar a onda original
+    # onda original
     fig.add_trace(go.Scatter(x=t, y=wave, mode='lines', name='Sinal Original', line=dict(color='blue')))
 
-    # Adicionar a onda amplificada
+    #onda amplificada
     fig.add_trace(go.Scatter(x=t, y=amplified_wave, mode='lines', name='Sinal Amplificado', line=dict(color='orange')))
 
-    # Personalizar o layout para se parecer com um osciloscópio
+    # layout se parecer com um osciloscópio
     fig.update_layout(
         title="Osciloscópio - Sinal Original e Amplificado",
         xaxis_title="Tempo (s)",
